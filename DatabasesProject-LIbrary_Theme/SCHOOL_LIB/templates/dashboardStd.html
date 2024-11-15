@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <meta http-equiv="Content-Type" content="text/html">
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+    
+    .dashboard-container {
+      width: 400px;
+      margin: 0 auto;
+      text-align: left;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    
+    .center {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .btn-change-info {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .btn-change-info:hover {
+      background-color: #45a049;
+    }
+    
+    .button-logout {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .button-logout:hover {
+      background-color: #45a049;
+    }
+
+    .btn-books {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    
+    .btn-books:hover {
+      background-color: #0069d9;
+    }
+    .btn-books-borrow {
+      background-color: #f08b08;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    
+    .btn-books-borrow:hover {
+      background-color: #f08b08;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    <h2>Welcome to the Dashboard {{ user[3] }}</h2>
+    <p>This is your personalized student's dashboard.</p>
+    <ul>
+      <li>Name: {{user[3]}}</li>
+      <li>Surname:{{user[4]}}</li>
+      <li>Email: {{user[5]}}</li>
+      <li>Age: {{user[8]}}</li>
+      <li>Sex: {{user[9]}}</li>
+      <li>Class: {{user[10]}}</li>
+    </ul>
+    <div class="center">
+      <div>
+        <button onclick="location.href='/edit_info'" class="btn-change-info" type="button">Change Password</button>
+      </div>
+      <div>
+        <button onclick="location.href='/books'" class="btn-books" type="button">View Books</button>
+      </div>
+      <div>
+        <button onclick="location.href='/books/borrowed'" class="btn-books-borrow" type="button">View Borrowed Books</button>
+      </div>
+      <div>
+        <button onclick="location.href='/'" class="button-logout" type="button">Logout</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

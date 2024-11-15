@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>List of Writers</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f2f2f2;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+      background-color: #fff;
+      padding: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .connect-button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+    .connect-button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <a href="dashboard"><button class="connect-button">Back</button></a>
+  <h1>List of Writers</h1>
+  <ul>
+    {% for writer in writers %}
+      <li>{{ writer }}</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>
+
+

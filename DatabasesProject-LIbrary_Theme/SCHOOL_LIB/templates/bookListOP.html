@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book Titles</title>
+  <a href="/dashboard" class="dashboard-button">Back to Dashboard</a>
+  <style>
+     .dashboard-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 5px 10px;
+            border: none;
+            background-color: #337ab7;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    h2 {
+      color: #333;
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f2f2f2;
+      cursor: pointer;  /* Add cursor style to indicate clickable header */
+    }
+    .view-button {
+      background-color: #2196F3;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .button-container {
+      text-align: right;
+      margin-bottom: 10px;
+    }
+    .button-container button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .button-container button.active {
+    background-color: #2196F3;
+  }
+  </style>
+</head>
+<body>
+  {% for scl in school %}
+  <h1>{{ scl[1] }}</h1>
+  {% endfor %}
+  {% for usr in user %}
+  <h2>Welcome {{ usr[11] }} {{ usr[4] }}</h2>
+  {% endfor %}
+  
+
+  <table id="bookTable">
+    <thead>
+      <tr>
+        <th onclick="sortTable(0)">ISBN</th>
+        <th onclick="sortTable(1)">Title</th>
+        <th onclick="sortTable(2)">Writer</th>
+        <th>Publisher</th>
+        <th onclick="sortTable(4)">Copies</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in books %}
+      <tr {% if item[6] %}class="books"{% endif %}>
+        <td>{{ item[1] }}</td>
+        <td>{{ item[2] }}</td>
+        <td>{{ item[4] }}</td>
+        <td>{{ item[3] }}</td>
+        <td>{{ item[7] }}</td>
+        <td><button class="view-button" onclick="viewBook('{{ item[0] }}')">View</button></td>
+      </tr>
+      {% endfor %}
+     
+    </tbody>
+  </table>
+
+  <script>
+    function sortTable(columnIndex) {
+      var table, rows, switching, i, x, y, shouldSwitch;
+      table = document.getElementById("bookTable");
+      switching = true;
+
+      while (switching) {
+        switching = false;
+        rows = table.rows;
+
+        for (i = 1; i < rows.length - 1; i++) {
+          shouldSwitch = false;
+          x = rows[i].getElementsByTagName("td")[columnIndex];
+          y = rows[i + 1].getElementsByTagName("td")[columnIndex];
+
+          // Check if the column is "ISBN" and prevent sorting
+          if (columnIndex === 0) {
+            continue;
+          }
+
+          // Compare as strings for other columns
+          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+            shouldSwitch = true;
+            break;
+          }
+        }
+
+        if (shouldSwitch) {
+          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+          switching = true;
+        }
+      }
+    }
+
+    function viewBook(id) {
+      // Replace the 'specific_link' with the actual link for the specific book
+      window.location.href = 'books/' + id;
+    }
+  </script>
+</body>
+</html>
+
+

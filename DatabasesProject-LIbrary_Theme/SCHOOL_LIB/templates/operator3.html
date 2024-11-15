@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Reviews</title>
+    <a href="/dashboard" class="dashboard-button">Back to Dashboard</a>
+    <style>
+       .dashboard-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 5px 10px;
+            border: none;
+            background-color: #337ab7;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .review-score {
+            display: none;
+            font-weight: bold;
+        }
+
+        .active .review-score {
+            display: inline-block;
+        }
+
+        .active .toggle-link {
+            font-weight: normal;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function toggleReviewScore(userId) {
+            const userRow = document.getElementById(`user-${userId}`);
+            userRow.classList.toggle("active");
+        }
+        
+        function toggleCategoryScore(categoryId) {
+            const categoryRow = document.getElementById(`category-${categoryId}`);
+            categoryRow.classList.toggle("active");
+        }
+    </script>
+</head>
+<body>
+    <h1>User Reviews</h1>
+
+    <table>
+        <tr>
+            <th>User Name</th>
+            <th>User Surname</th>
+            <th>Average Review Score</th>
+        </tr>
+        {% for user in users %}
+        <tr id="user-{{ user[0] }}">
+            <td onclick="toggleReviewScore('{{ user[0] }}')" class="toggle-link">{{ user[0] }}</td>
+            <td>{{ user[1] }}</td>
+            <td class="review-score">{{ '{:.1f}'.format(user[2]) }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Categories</h2>
+    <table>
+        <tr>
+            <th>Category</th>
+            <th>Average Review Score</th>
+        </tr>
+        {% for category in categories %}
+        <tr id="category-{{ category[0] }}">
+            <td onclick="toggleCategoryScore('{{ category[0] }}')" class="toggle-link">{{ category[0] }}</td>
+            <td class="review-score">{{ '{:.1f}'.format(category[1]) }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

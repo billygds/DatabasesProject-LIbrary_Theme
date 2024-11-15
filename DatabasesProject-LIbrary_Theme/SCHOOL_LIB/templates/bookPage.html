@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book Details</title>
+  <a href="/books" class="dashboard-button">Back to Books</a>
+  <style>
+    .dashboard-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 5px 10px;
+            border: none;
+            background-color: #337ab7;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    .book-details {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .book-details p {
+      margin-bottom: 10px;
+    }
+    .book-details h2 {
+      margin-top: 0;
+    }
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .button-container button {
+      margin: 0 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .button-borrow {
+      background-color: blue;
+      color: white;
+    }
+    .button-review {
+      background-color: yellow;
+      color: black;
+    }
+    .button-reserve {
+      background-color: lightblue;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <h1>Book Details</h1>
+  
+  <div class="book-details">
+    <h2>ISBN: <span id="isbn"></span></h2>
+    <p><strong>Title:</strong> <span id="title"></span></p>
+    <p><strong>Writer:</strong> <span id="writer"></span></p>
+    <p><strong>Publisher:</strong> <span id="publisher"></span></p>
+    <p><strong>Genre:</strong> <span id="genre"></span></p>
+    <h2>Summary:</h2>
+    <p id="summary"></p>
+  </div>
+  
+  <div class="button-container">
+    <form action="/books/{{bookDetails[0]}}/borrow" method="POST">
+        <input type="hidden" name="book_title" value="{{ bookDetails[2] }}">
+        <button class="button-borrow">Borrow</button>
+      </form>
+      <form action="/reviewBook" method="POST">
+        <input type="hidden" name="book_id" value="{{ bookDetails[0] }}">
+    <button class="button-review">Review</button>
+      </form>
+      <form action="/books/{{bookDetails[0]}}/reserve" method="POST">
+        <input type="hidden" name="book_title" value="{{ bookDetails[2] }}">
+    <button class="button-reserve">Reserve</button>
+        </form>
+        <form action="/editBook" method="POST">
+          <input type="hidden" name="book_id" value="{{ bookDetails[0] }}">
+          <button class="button-edit ">Edit</button>
+  </div>
+  
+  <script>
+    // Replace the following variables with the actual book details
+    var book = {
+      isbn: "{{bookDetails[1]}}",
+      title: "{{bookDetails[2]}}",
+      writer: "{{bookDetails[4]}}",
+      publisher: "{{bookDetails[3]}}",
+      genre: "{{bookDetails[9]}}",
+      summary: "{{bookDetails[6]}}"
+    };
+    
+    // Update the HTML elements with the book details
+    document.getElementById("isbn").textContent = book.isbn;
+    document.getElementById("title").textContent = book.title;
+    document.getElementById("writer").textContent = book.writer;
+    document.getElementById("publisher").textContent = book.publisher;
+    document.getElementById("genre").textContent = book.genre;
+    document.getElementById("summary").textContent = book.summary;
+
+    function postBorrow(id) {
+      window.location.href = 'books/' + id + '/borrow';
+    }
+  </script>
+</body>
+</html>

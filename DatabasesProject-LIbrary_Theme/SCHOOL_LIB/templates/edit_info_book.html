@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Info</title>
+  <meta http-equiv="Content-Type" content="text/html">
+  <style>
+    .center {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h2>Edit Info</h2>
+  
+  <form action="/save_book_info" method="POST">
+    <input type="hidden" name="id" value="{{book[0]}}">
+    <label for="name">ISBN:</label>
+    <input type="text" name="ISBN" id="ISBN" value="{{ book[1] }}" required>
+    <br><br>
+
+    <label for="name">Title:</label>
+    <input type="text" name="Title" id="Title" value="{{ book[2] }}" required>
+    <br><br>
+
+    <label for="name">Publisher:</label>
+    <input type="text" name="Publisher" id="Publisher" value="{{ book[3] }}" required>
+    <br><br>
+  
+    <label for="surname">Writer:</label>
+    <input type="text" name="Writer" id="Writer" value="{{ book[4] }}" required>
+    <br><br>
+  
+    <label for="name">Summary:</label>
+    <input type="text" name="Summary" id="Summary" value="{{ book[6] }}" required>
+    <br><br>
+  
+    <div class="center">
+      <button type="submit">Confirm</button>
+      <button onclick="location.href='/dashboard'" type="button">Cancel</button>
+    </div>
+  </form>
+</body>
+</html>

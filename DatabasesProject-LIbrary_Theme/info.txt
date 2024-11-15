@@ -1,0 +1,26 @@
+https://docs.google.com/spreadsheets/d/1QcYqLstymltIb4CsbR_GLZEotGjglWyzblddz5q0-EE/edit#gid=0
+
+Πιθανό Εργαλείο : draw.io
+
+This is text. You can destroy it.
+Changed.
+δσαηψβηασψβααηφβηασ
+Καλην εισπεραν αρχοντες
+
+python, flask, Flask-MySQLdb
+
+Σημαντικές έννοιες: Views, Triggers
+
+---------
+How to show the dbs in MariaDB:
+SHOW DATABASES
+
+How to select one:
+USE database_name;
+
+How to view the tables:
+SHOW tables;
+
+!!!!!!!!!!!!!!!!!!!
+FOREIGN KEYS MUST BE OF THE SAME TYPE AS THE KEY REFERENCED
+!!!!!!!!!!!!!!!!!!!

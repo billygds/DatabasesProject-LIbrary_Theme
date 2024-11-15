@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Info</title>
+  <meta http-equiv="Content-Type" content="text/html">
+  <style>
+    .center {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h2>Edit Info</h2>
+  
+  <form action="/save_info" method="POST">
+    <label for="name">Username:</label>
+    <input type="text" name="username" id="username" value="{{ user[1] }}" required>
+    <br><br>
+
+    <label for="name">Password:</label>
+    <input type="text" name="password" id="password" value="{{ user[2] }}" required>
+    <br><br>
+
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" value="{{ user[3] }}" required>
+    <br><br>
+  
+    <label for="surname">Surname:</label>
+    <input type="text" name="surname" id="surname" value="{{ user[4] }}" required>
+    <br><br>
+  
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" value="{{ user[5] }}" required>
+    <br><br>
+  
+    <label for="age">Age:</label>
+    <input type="number" name="age" id="age" value="{{ user[8] }}" required>
+    <br><br>
+  
+    <label for="sex">Sex:</label>
+    <input type="text" name="sex" id="sex" value="{{ user[9] }}" required>
+    <br><br>
+  
+    <label for="class">Class:</label>
+    <input type="text" name="class" id="class" value="{{ user[10] }}" required>
+    <br><br>
+  
+    <div class="center">
+      <button type="submit">Confirm</button>
+      <button onclick="location.href='/dashboard'" type="button">Cancel</button>
+    </div>
+  </form>
+</body>
+</html>

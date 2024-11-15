@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Review Form</title>
+  <a href="/books/4" class="dashboard-button">Back to Book Details </details></a>
+  <style>
+    .dashboard-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 5px 10px;
+            border: none;
+            background-color: #337ab7;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input[type="text"],
+    select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .likert-scale label {
+      display: inline-block;
+      margin-right: 10px;
+    }
+    .likert-scale input[type="radio"] {
+      vertical-align: middle;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Write a Review for <br>{{bookDetails[0][2]}}</h1>
+  <form action="/books/{{bookDetails[0][0]}}/review" method="POST">
+    <label for="text-review">Comment on your Experience</label>
+    <textarea id="text-review" name="text-review" placeholder="Write your review"></textarea>
+
+    <label for="likert-review">Did you like the book?</label>
+    <div class="likert-scale">
+      <label><input type="radio" name="likert-review" value="1">No</label>
+      <label><input type="radio" name="likert-review" value="2">Meh</label>
+      <label><input type="radio" name="likert-review" value="3">Ok</label>
+      <label><input type="radio" name="likert-review" value="4">Good</label>
+      <label><input type="radio" name="likert-review" value="5">Great</label>
+    </div>
+
+    <input type="hidden" name="hidden-text" id="hidden-text">
+    <input type="hidden" name="hidden-likert" id="hidden-likert">
+
+    <button type="submit" onclick="setHiddenValues()">Submit Review</button>
+  </form>
+  <script>
+    function setHiddenValues() {
+      var textReview = document.getElementById("text-review").value;
+      var likertReview = document.querySelector('input[name="likert-review"]:checked').value;
+      document.getElementById("hidden-text").value = textReview;
+      document.getElementById("hidden-likert").value = likertReview;
+    }
+  </script>
+</body>
+</html>

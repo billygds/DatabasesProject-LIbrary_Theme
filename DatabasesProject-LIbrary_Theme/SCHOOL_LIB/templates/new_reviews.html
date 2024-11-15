@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List of New Reviews</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #e6e6e6;
+        }
+        
+        .confirm-button {
+            padding: 5px 10px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .dashboard-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 5px 10px;
+            border: none;
+            background-color: #337ab7;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>List of New Reviews</h1>
+    <a href="/dashboard" class="dashboard-button">Back to Dashboard</a>
+    <table>
+        <tr>
+            <th>User ID</th>
+            <th>book_id</th>
+            <th>Review</th>
+            <th>Review Score</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+        {% for review in bookReview %}
+            <tr>
+                <td>{{ review[0] }}</td>
+                <td>{{ review[1] }}</td>
+                <td>{{ review[2] }}</td>
+                <td>{{ review[3] }}</td>
+                <td>{{ review[4] }}</td>
+                
+                <td>
+                    <form class="confirm-form" method="post" action="/new_reviews">
+                        <input type="hidden" name="user_id" value="{{ review[0] }}">
+                        <input type="hidden" name="book_id" value="{{ review[1] }}">
+                        <button class="confirm-button">Confirm</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

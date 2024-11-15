@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Category Report</title>
+    <a href="dashboard"><button class="connect-button">Back</button></a>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .connect-button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+        h1, h2, h3 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+        }
+        select {
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            padding: 5px 10px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        h3 {
+            margin-top: 20px;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        p {
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <h1>Category Report</h1>
+
+    <form action="/admin2" method="GET">
+        <label for="category">Select a category:</label>
+        <select name="category" id="category">
+            {% for category in categories %}
+            <option value="{{ category }}" {% if category == chosen_category %}selected{% endif %}>{{ category }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Submit">
+    </form>
+
+
+    {% if chosen_category %}
+    <h2>Selected Category: {{ chosen_category }}</h2>
+
+    {% if writers %}
+    <h3>Writers:</h3>
+    <ul>
+        {% for writer in writers %}
+        <li>{{ writer }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No writers found for this category.</p>
+    {% endif %}
+
+    {% if professors %}
+    <h3>Professors:</h3>
+    <ul>
+        {% for professor in professors %}
+        <li>{{ professor[0] }} {{ professor[1] }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No professors found for this category.</p>
+    {% endif %}
+
+    {% endif %}
+</body>
+</html>

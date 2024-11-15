@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List of Library Users</title>
+    <a href="/dashboard" class="dashboard-button">Back to dashboard</a>
+    <style>
+        .dashboard-button {
+            position: absolute;
+            top: 1px;
+            left: 10px;
+            padding: 5px 5px;
+            border: none;
+            background-color: #337ab7;
+            color: white;
+            cursor: pointer;
+            border-radius: 2px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #e6e6e6;
+        }
+        
+        .confirm-button {
+            padding: 5px 10px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>List of Library Users</h1>
+    <table>
+        <tr>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Email</th>
+            <th>Postal Code</th>
+            <th>Phone</th>
+            <th>Age</th>
+            <th>Sex</th>
+            <th>Class</th>
+            <th>User Type</th>
+            <th>Operator</th>
+            <th>Status</th>
+            <th>School ID</th>
+            <th></th>
+        </tr>
+        {% for user in library_users %}
+            <tr>
+                <td>{{ user[0] }}</td>
+                <td>{{ user[1] }}</td>
+                <td>{{ user[3] }}</td>
+                <td>{{ user[4] }}</td>
+                <td>{{ user[5] }}</td>
+                <td>{{ user[6] }}</td>
+                <td>{{ user[7] }}</td>
+                <td>{{ user[8] }}</td>
+                <td>{{ user[9] }}</td>
+                <td>{{ user[10] }}</td>
+                <td>{{ user[11] }}</td>
+                <td>{{ user[12] }}</td>
+                <td>{{ user[13] }}</td>
+                <td>{{ user[14] }}</td>
+                <td>
+                    <form class="confirm-form" method="post" action="/new_users">
+                        <input type="hidden" name="user_id" value="{{ user[0] }}">
+                        <button class="confirm-button">Confirm</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

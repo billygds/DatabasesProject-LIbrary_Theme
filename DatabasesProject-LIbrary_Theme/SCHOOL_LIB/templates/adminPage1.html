@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Number of Borrows by School</title>
+    <a href="dashboard"><button class="connect-button">Back</button></a>
+    <style>
+          .connect-button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .calendar-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .calendar-container select {
+            padding: 5px;
+        }
+
+        .calendar-container button {
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Number of Borrows by School</h1>
+    <table>
+        <tr>
+            <th>School ID</th>
+            <th>School Name</th>
+            <th>Borrow Count</th>
+        </tr>
+        {% for school_id, school_name, borrow_count in school_borrows %}
+        <tr>
+            <td>{{ school_id }}</td>
+            <td>{{ school_name }}</td>
+            <td>{{ borrow_count }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="calendar-container">
+        <h3>Select Month:</h3>
+        <form action="/admin1" method="POST">
+            <select name="month" id="month">
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+            <select name="year" id="year">
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <!-- Add more options for the years as needed -->
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
+

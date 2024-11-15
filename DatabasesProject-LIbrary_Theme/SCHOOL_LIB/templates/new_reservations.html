@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List of New Reservations</title>
+    <a href="/dashboard" class="dashboard-button">Back to Dashboard</a>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #e6e6e6;
+        }
+        
+        .confirm-button {
+            padding: 5px 10px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .dashboard-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 5px 10px;
+            border: none;
+            background-color: #337ab7;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+ <h1>List of New Reservations</h1>
+    
+    <table>
+        <tr>
+            <th>User ID</th>
+            <th>book_id</th>
+            <th>Deadline for Return</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+        {% for reserve in bookReservation %}
+            <tr>
+                <td>{{ reserve[0] }}</td>
+                <td>{{ reserve[1] }}</td>
+                <td>{{ reserve[2] }}</td>
+                <td>{{ reserve[3] }}</td>
+                
+                
+                <td>
+                    <form class="confirm-form" method="post" action="/new_reservations">
+                        <input type="hidden" name="user_id" value="{{ reserve[0] }}">
+                        <input type="hidden" name="book_id" value="{{ reserve[1] }}">
+                        <button class="confirm-button">Confirm</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

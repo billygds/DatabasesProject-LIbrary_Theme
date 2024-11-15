@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List of Current Reservations</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #e6e6e6;
+        }
+        
+        .confirm-button {
+            padding: 5px 10px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .dashboard-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 5px 10px;
+            border: none;
+            background-color: #337ab7;
+            color: white;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>List of Current Reservations</h1>
+    <a href="/dashboard" class="dashboard-button">Back to Dashboard</a>
+    <table>
+        <tr>
+            <th>User ID</th>
+            <th>book_id</th>
+            <th>Reservation Deadline</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+        {% for reserve in reserve %}
+            <tr>
+                <td>{{ reserve[0] }}</td>
+                <td>{{ reserve[1] }}</td>
+                <td>{{ reserve[2] }}</td>
+                <td>{{ reserve[3] }}</td>
+                
+                {% if reserve[3]=='Overdue' %}
+                <td>
+                    <form class="confirm-form" method="post" action="/archived_reservations">
+                        <input type="hidden" name="user_id" value="{{ reserve[0] }}">
+                        <input type="hidden" name="book_id" value="{{ reserve[1] }}">
+                        <input type="hidden" name="school_id" value="{{ school_id }}">
+                        <button class="confirm-button">Delete</button>
+                    </form>
+                </td>
+                {% elif reserve[3]=='Approved' %}
+                <td>
+                    <form class="confirm-form" method="post" action="/makeBorrow">
+                        <input type="hidden" name="user_id" value="{{ reserve[0] }}">
+                        <input type="hidden" name="book_id" value="{{ reserve[1] }}">
+                        <input type="hidden" name="school_id" value="{{ school_id }}">
+                        <button class="confirm-button">Confirm Borrow</button>
+                    </form>
+                </td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

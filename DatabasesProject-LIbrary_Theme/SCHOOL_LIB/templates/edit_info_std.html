@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Info</title>
+  <meta http-equiv="Content-Type" content="text/html">
+  <style>
+    .center {
+      text-align: center;
+    }
+    
+    input {
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <h2>Edit Info</h2>
+  
+  <form action="/save_info" method="POST">
+    <label for="name">Username:</label>
+    <input type="text" name="username" id="username" value="{{ user[1] }}" disabled>
+    <input type="hidden" name="username" value="{{ user[1] }}">
+    <br><br>
+
+    <label for="name">Password:</label>
+    <input type="password" name="password" id="password" value="{{ user[2] }}" required>
+    <br><br>
+
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" value="{{ user[3] }}" disabled>
+    <input type="hidden" name="name" value="{{ user[3] }}">
+    <br><br>
+  
+    <label for="surname">Surname:</label>
+    <input type="text" name="surname" id="surname" value="{{ user[4] }}" disabled>
+    <input type="hidden" name="surname" value="{{ user[4] }}">
+    <br><br>
+  
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" value="{{ user[5] }}" disabled>
+    <input type="hidden" name="email" value="{{ user[5] }}">
+    <br><br>
+  
+    <label for="age">Age:</label>
+    <input type="number" name="age" id="age" value="{{ user[8] }}" disabled>
+    <input type="hidden" name="age" value="{{ user[6] }}">
+    <br><br>
+  
+    <label for="sex">Sex:</label>
+    <input type="text" name="sex" id="sex" value="{{ user[9] }}" disabled>
+    <input type="hidden" name="sex" value="{{ user[7] }}">
+    <br><br>
+  
+    <label for="class">Class:</label>
+    <input type="text" name="class" id="class" value="{{ user[10] }}" disabled>
+    <input type="hidden" name="class" value="{{ user[8] }}">
+    <br><br>
+  
+    <div class="center">
+      <button type="submit">Confirm</button>
+      <button onclick="location.href='/'" type="button">Cancel</button>
+    </div>
+  </form>
+</body>
+</html>
